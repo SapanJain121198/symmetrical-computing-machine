@@ -6,5 +6,6 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "Answer")
 public class Answer {
+	
 
 }
