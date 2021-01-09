@@ -47,6 +47,7 @@ public class Question {
 	@OneToMany(mappedBy="question")
 	private List<Answer> answers;
 
+	
 	public int getQuestionId() {
 		return questionId;
 	}
