@@ -1,10 +1,13 @@
 package com.lti.entity;
 
 import java.time.LocalDate;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -32,6 +35,9 @@ public class RegisteredUser {
 	private int yearOfCompletion;
 	
 	private String password;
+	
+	@OneToMany(mappedBy="registeredUser", cascade = CascadeType.MERGE)
+	private List<TestReport> testReports;
 
 	public int getUserId() {
 		return userId;
@@ -111,5 +117,12 @@ public class RegisteredUser {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	
+	public List<TestReport> getTestReports() {
+		return testReports;
+	}
+	public void setTestReports(List<TestReport> testReports) {
+		this.testReports = testReports;
 	}
 }
