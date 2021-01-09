@@ -1,9 +1,13 @@
 package com.lti.entity;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 
@@ -39,6 +43,9 @@ public class Question {
 	
 	@Column(name="TESTLEVEL")
 	private int testLevel;
+	
+	@OneToMany(mappedBy="question")
+	private List<Answer> answers;
 
 	public int getQuestionId() {
 		return questionId;
@@ -46,6 +53,14 @@ public class Question {
 
 	public void setQuestionId(int questionId) {
 		this.questionId = questionId;
+	}
+
+	public List<Answer> getAnswers() {
+		return answers;
+	}
+
+	public void setAnswers(List<Answer> answers) {
+		this.answers = answers;
 	}
 
 	public String getSubjectName() {
