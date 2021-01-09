@@ -5,6 +5,8 @@ import org.springframework.dao.EmptyResultDataAccessException;
 
 import com.lti.dao.AdminProjectDao;
 import com.lti.dao.RegisteredUserDao;
+import com.lti.dto.Password;
+import com.lti.dto.SendMail;
 import com.lti.entity.AdminProject;
 import com.lti.entity.RegisteredUser;
 import com.lti.exception.UserServiceException;
@@ -21,10 +23,20 @@ public class UserServiceImpl implements UserService {
 		if (registeredUserDao.isUserRegistered(registeredUser.getEmail()))
 			throw new UserServiceException("Student already registered");
 
+		
+		Password pwd = new Password();
+		String password = pwd.makePassword();
+		
+		registeredUser.setPassword(password);
+		
 		RegisteredUser updatedUser = (RegisteredUser) registeredUserDao.save(registeredUser);
 
 		// code to send email to the customer on successful registration will be here
 
+		SendMail email= new SendMail();
+		
+		email.sendNotificationEmail(registeredUser);
+		
 		return updatedUser.getUserId();
 	}
 
@@ -79,8 +91,14 @@ public class UserServiceImpl implements UserService {
 			if(newPassword.equals(confirmPassword)) {
 				registeredUser.setPassword(newPassword);
 				registeredUserDao.changePassword(registeredUser);
+				
+				SendMail mail= new SendMail();
+				
+				mail.sendNotificationForPassword(registeredUser);
+				
 				}
 			
+		
 			return "Password Changed Successfully";
 			}
 			catch(UserServiceException e) {
