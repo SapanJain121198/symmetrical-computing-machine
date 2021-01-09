@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.lti.dto.AdminLogin;
 import com.lti.dto.Login;
 import com.lti.dto.LoginStatus;
 import com.lti.dto.RegisterStatus;
@@ -76,10 +77,10 @@ public class UserController {
 	}
 	
 	@PostMapping(path = "/adminlogin")
-	public @ResponseBody LoginStatus adminLogin(@RequestBody Login login) {
+	public @ResponseBody LoginStatus adminLogin(@RequestBody AdminLogin login) {
 
 		try {
-			AdminProject admin= userService.adminlogin(login.getEmail(), login.getPassword());
+			AdminProject admin= userService.adminLogin(login.getId(), login.getPassword());
 			LoginStatus status = new LoginStatus();
 			status.setMessage("Login Success");
 			status.setStatus(StatusType.SUCCESS);
