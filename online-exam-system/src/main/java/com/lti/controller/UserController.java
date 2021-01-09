@@ -11,6 +11,7 @@ import com.lti.dto.Login;
 import com.lti.dto.LoginStatus;
 import com.lti.dto.RegisterStatus;
 import com.lti.dto.Status.StatusType;
+import com.lti.entity.AdminProject;
 import com.lti.entity.RegisteredUser;
 import com.lti.exception.UserServiceException;
 import com.lti.service.UserService;
@@ -67,4 +68,25 @@ public class UserController {
 		}
 		
 	}
+	
+	@PostMapping(path = "/adminlogin")
+	public @ResponseBody LoginStatus adminLogin(@RequestBody Login login) {
+
+		try {
+			AdminProject admin= userService.adminlogin(login.getEmail(), login.getPassword());
+			LoginStatus status = new LoginStatus();
+			status.setMessage("Login Success");
+			status.setStatus(StatusType.SUCCESS);
+			status.setUserId(admin.getId());
+	        status.setFullName(admin.getPassword());
+			return status;
+		} catch(UserServiceException e ){
+			LoginStatus status = new LoginStatus();
+			status.setStatus(StatusType.FALED);
+			status.setMessage(e.getMessage());
+			
+	         return status;
+		}
+	}
+	
 }
