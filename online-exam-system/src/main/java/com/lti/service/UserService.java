@@ -9,5 +9,7 @@ public interface UserService {
 	public int register(RegisteredUser registeredUser);
 	public  RegisteredUser userLogin(String email , String password);
 	public AdminProject adminLogin(int id,String password );
+	
+	public String forgotPassword(String newPassword, String confirmPassword, String email);
     
 }

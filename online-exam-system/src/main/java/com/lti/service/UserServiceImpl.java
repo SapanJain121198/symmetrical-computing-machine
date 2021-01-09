@@ -67,5 +67,32 @@ public class UserServiceImpl implements UserService {
 		}
 
 	}
+	
+	
+	
+	public String forgotPassword(String newPassword, String confirmPassword, String email) {
+		
+		try {
+			RegisteredUser registeredUser=new RegisteredUser();
+			if (!registeredUserDao.isUserRegistered(email))
+				throw new UserServiceException("Customer not registered!");
+			
+			if(newPassword.equals(confirmPassword)) {
+				registeredUser.setPassword(newPassword);
+				registeredUserDao.changePassword(registeredUser);
+				}
+			}
+			catch(UserServiceException e) {
+				throw new UserServiceException("Password not matching");
+				
+			}
+		
+		
+	}
+	
+	
+	
+	
+	
 
 }

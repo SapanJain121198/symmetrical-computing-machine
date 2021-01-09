@@ -99,23 +99,8 @@ public class UserController {
 	@RequestMapping(path="/changepassword")
 	public @ResponseBody void changePassword(@RequestParam("newpassword") String newPassword,@RequestParam("confirmpassword") String confirmPassword,@RequestParam("email") String email){
 		
-		try {
-			RegisteredUser registeredUser=new RegisteredUser();
-			if (!registeredUserDao.isUserRegistered(email))
-				throw new UserServiceException("Customer not registered!");
-			
-			if(newPassword.equals(confirmPassword)) {
-				registeredUser.setPassword(newPassword);
-				registeredUser=userService.updateRegisteredUser(registeredUser);
-				//map.put("message", "Password Changed Sucessfully");	
-				}
-			}
-			catch(UserServiceException e) {
-				throw new UserServiceException("Password not matching");
-				
-			}
+		userService.forgotPassword(newPassword, confirmPassword, email);
 			
 		}
 	}
-	
-}
+

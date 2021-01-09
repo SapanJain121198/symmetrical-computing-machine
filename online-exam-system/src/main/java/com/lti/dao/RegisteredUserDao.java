@@ -2,6 +2,8 @@ package com.lti.dao;
 
 import org.springframework.stereotype.Repository;
 
+import com.lti.entity.RegisteredUser;
+
 @Repository
 public class RegisteredUserDao extends GenericDao {
 	
@@ -24,5 +26,10 @@ public class RegisteredUserDao extends GenericDao {
 	}
 	
 	
-
+	public void changePassword(RegisteredUser registeredUser) {
+		
+		entityManager.merge(registeredUser);
+		
+	}
+	
 }
