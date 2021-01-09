@@ -49,7 +49,7 @@ public class UserController {
 	{
 		try
 		{
-			RegisteredUser registeredUser= userService.login(login.getEmail(),login.getPassword());
+			RegisteredUser registeredUser= userService.userLogin(login.getEmail(),login.getPassword());
 			LoginStatus status = new LoginStatus();
 			status.setStatus(StatusType.SUCCESS);
 			status.setMessage("login successful");
