@@ -7,5 +7,4 @@ import javax.persistence.Table;
 @Table(name = "Answer")
 public class Answer {
 	
-
 }
