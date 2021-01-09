@@ -1,8 +1,11 @@
 package com.lti.service;
 
-import com.lti.entity.AdminProject;
+import com.lti.entity.RegisteredUser;
 
 public interface UserService {
-	public AdminProject adminlogin(String email,String password);
-
+	
+	public int register(RegisteredUser registeredUser);
+	public  RegisteredUser login(String email , String password);
+	
+    
 }
