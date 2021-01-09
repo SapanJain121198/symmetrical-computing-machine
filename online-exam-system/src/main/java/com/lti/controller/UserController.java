@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.lti.dto.Login;
+import com.lti.dto.LoginStatus;
 import com.lti.dto.RegisterStatus;
 import com.lti.dto.Status.StatusType;
 import com.lti.entity.RegisteredUser;
@@ -41,5 +43,28 @@ public class UserController {
 			status.setMessage(e.getMessage());
 			return status;
 		}
+	}
+	@PostMapping("/userlogin")
+	public LoginStatus userLogin(@RequestBody Login login)
+	{
+		try
+		{
+			RegisteredUser registeredUser= userService.login(login.getEmail(),login.getPassword());
+			LoginStatus status = new LoginStatus();
+			status.setStatus(StatusType.SUCCESS);
+			status.setMessage("login successful");
+			status.setUserId(registeredUser.getUserId());
+			status.setFullName(registeredUser.getFullName());
+			return status;
+		}
+		catch(UserServiceException e )
+		{
+			LoginStatus status = new LoginStatus();
+			status.setStatus(StatusType.FALED);
+			status.setMessage(e.getMessage());
+			
+	         return status;
+		}
+		
 	}
 }
