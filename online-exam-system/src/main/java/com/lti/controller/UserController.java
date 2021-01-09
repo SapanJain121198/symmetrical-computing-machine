@@ -1,9 +1,15 @@
 package com.lti.controller;
 
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -86,6 +92,28 @@ public class UserController {
 			status.setMessage(e.getMessage());
 			
 	         return status;
+		}
+	}
+	
+	@RequestMapping(path="/changepassword")
+	public @ResponseBody void changePassword(@RequestParam("newpassword") String newPassword,@RequestParam("confirmpassword") String confirmPassword,@RequestParam("email") String email){
+		
+		try {
+			RegisteredUser registeredUser=new RegisteredUser();
+			if (!registeredUserDao.isUserRegistered(email))
+				throw new UserServiceException("Customer not registered!");
+			
+			if(newPassword.equals(confirmPassword)) {
+				registeredUser.setPassword(newPassword);
+				registeredUser=userService.updateRegisteredUser(registeredUser);
+				//map.put("message", "Password Changed Sucessfully");	
+				}
+			}
+			catch(UserServiceException e) {
+				throw new UserServiceException("Password not matching");
+				
+			}
+			
 		}
 	}
 	
