@@ -3,6 +3,7 @@ package com.lti.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 
+import com.lti.dao.AdminProjectDao;
 import com.lti.dao.RegisteredUserDao;
 import com.lti.entity.AdminProject;
 import com.lti.entity.RegisteredUser;
@@ -27,8 +28,8 @@ public class UserServiceImpl implements UserService {
 		return updatedUser.getUserId();
 	}
 
-	public RegisteredUser Userlogin(String email, String password) {
-
+	@Override
+	public RegisteredUser userLogin(String email, String password) {
 		try {
 
 			if (!registeredUserDao.isUserRegistered(email))
@@ -47,14 +48,14 @@ public class UserServiceImpl implements UserService {
 		}
 	}
 
-	public AdminProject adminlogin(int id , String password) {
-
+	@Override
+	public AdminProject adminLogin(int id, String password) {
 		try {
 
-			if (!AdminProjectDao.isAdminRegistered(id))
+			if (!adminProjectDao.isAdminPresent(id))
 				throw new UserServiceException("Admin not registered!");
 
-			int adminId = AdminProjectDao.findByIdAndPassword(id, password);
+			int adminId = adminProjectDao.findByIdAndPassword(id, password);
 
 			AdminProject adminProject = adminProjectDao.fetchByKey(AdminProject.class, adminId);
 
@@ -65,11 +66,9 @@ public class UserServiceImpl implements UserService {
 		catch (EmptyResultDataAccessException e) {
 			throw new UserServiceException("Incorrect email/password");
 		}
-
 	}
 	
-	
-	
+
 	public String forgotPassword(String newPassword, String confirmPassword, String email) {
 		
 		try {
@@ -81,18 +80,13 @@ public class UserServiceImpl implements UserService {
 				registeredUser.setPassword(newPassword);
 				registeredUserDao.changePassword(registeredUser);
 				}
+			
+			return "Password Changed Successfully";
 			}
 			catch(UserServiceException e) {
 				throw new UserServiceException("Password not matching");
 				
 			}
 		
-		
 	}
-	
-	
-	
-	
-	
-
 }

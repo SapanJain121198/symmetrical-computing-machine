@@ -7,7 +7,7 @@ public class Status {
 	
 	public static enum StatusType
 	{
-		SUCCESS,FALED;
+		SUCCESS,FAILED;
 	}
 
 	public StatusType getStatus() {

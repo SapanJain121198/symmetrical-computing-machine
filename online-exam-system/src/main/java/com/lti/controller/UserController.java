@@ -68,7 +68,7 @@ public class UserController {
 		catch(UserServiceException e )
 		{
 			LoginStatus status = new LoginStatus();
-			status.setStatus(StatusType.FALED);
+			status.setStatus(StatusType.FAILED);
 			status.setMessage(e.getMessage());
 			
 	         return status;
@@ -89,7 +89,7 @@ public class UserController {
 			return status;
 		} catch(UserServiceException e ){
 			LoginStatus status = new LoginStatus();
-			status.setStatus(StatusType.FALED);
+			status.setStatus(StatusType.FAILED);
 			status.setMessage(e.getMessage());
 			
 	         return status;
