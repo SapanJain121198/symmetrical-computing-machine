@@ -1,7 +1,5 @@
 package com.lti.dto;
 
-import com.lti.dto.Status.StatusType;
-
 public class Status {
 	
 	private StatusType status;
@@ -31,6 +29,3 @@ public class Status {
 	
 
 }
-
-
-
