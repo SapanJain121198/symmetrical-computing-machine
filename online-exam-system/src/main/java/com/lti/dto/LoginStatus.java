@@ -2,20 +2,21 @@ package com.lti.dto;
 
 public class LoginStatus extends Status {
 
-	private String email;
-	private String password;
-	public String getEmail() {
-		return email;
+	private int userId;
+	private String fullName;
+	public int getUserId() {
+		return userId;
 	}
-	public void setEmail(String email) {
-		this.email = email;
+	public void setUserId(int userId) {
+		this.userId = userId;
 	}
-	public String getPassword() {
-		return password;
+	public String getFullName() {
+		return fullName;
 	}
-	public void setPassword(String password) {
-		this.password = password;
+	public void setFullName(String fullName) {
+		this.fullName = fullName;
 	}
+	
 	
 	
 }
