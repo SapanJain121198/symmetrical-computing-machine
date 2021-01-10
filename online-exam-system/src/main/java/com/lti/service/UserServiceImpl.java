@@ -85,6 +85,9 @@ public class UserServiceImpl implements UserService {
 	public String forgotPassword(String newPassword, String confirmPassword, String email) {
 		
 		try {
+			
+			// We have to right a logic for sending a reset password link to the user
+			
 			RegisteredUser registeredUser=new RegisteredUser();
 			if (!registeredUserDao.isUserRegistered(email))
 				throw new UserServiceException("Customer not registered!");
