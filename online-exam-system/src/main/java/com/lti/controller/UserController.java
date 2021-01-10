@@ -102,5 +102,15 @@ public class UserController {
 		userService.forgotPassword(newPassword, confirmPassword, email);
 			
 		}
+	
+	
+//	@RequestMapping(path="/newexam/java")
+//	public @ResponseBody void JavaExam(@RequestParam(@RequestBody RegisteredUser registeredUser)  {
+//		
+//		registeredUser.takeJavaExam
+//		
+//		
+//	}
+	
 	}
 

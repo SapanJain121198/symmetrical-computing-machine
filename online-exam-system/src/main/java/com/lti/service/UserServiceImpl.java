@@ -19,6 +19,7 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	private AdminProjectDao adminProjectDao;
 
+	@Override
 	public int register(RegisteredUser registeredUser) {
 		if (registeredUserDao.isUserRegistered(registeredUser.getEmail()))
 			throw new UserServiceException("Student already registered");
@@ -80,7 +81,7 @@ public class UserServiceImpl implements UserService {
 		}
 	}
 	
-
+	@Override
 	public String forgotPassword(String newPassword, String confirmPassword, String email) {
 		
 		try {
