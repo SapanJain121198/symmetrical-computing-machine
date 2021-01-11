@@ -8,7 +8,6 @@ import org.springframework.transaction.annotation.Transactional;
 @Repository
 public class GenericDao {	
 	
-	
 	@PersistenceContext
 	protected EntityManager entityManager;
 	
