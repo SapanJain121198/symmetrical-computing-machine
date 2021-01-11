@@ -20,11 +20,11 @@ public class TestReport {
 	@GeneratedValue
 	private int reportId;
 	
-	private String name;
+	//private String name;
 	private int score;
 	private int testLevel;
 	private String testSubjectName;
-	private int userId;
+	//private int userId;
 	private LocalDate dateAndTime;
 	
 	@ManyToOne
@@ -45,13 +45,13 @@ public class TestReport {
 		this.reportId = reportId;
 	}
 
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
+//	public String getName() {
+//		return name;
+//	}
+//
+//	public void setName(String name) {
+//		this.name = name;
+//	}
 
 	public int getScore() {
 		return score;
@@ -77,13 +77,13 @@ public class TestReport {
 		this.testSubjectName = testSubjectName;
 	}
 
-	public int getUserId() {
-		return userId;
-	}
-
-	public void setUserId(int userId) {
-		this.userId = userId;
-	}
+//	public int getUserId() {
+//		return userId;
+//	}
+//
+//	public void setUserId(int userId) {
+//		this.userId = userId;
+//	}
 
 	public LocalDate getDateAndTime() {
 		return dateAndTime;

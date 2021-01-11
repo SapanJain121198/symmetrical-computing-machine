@@ -6,13 +6,13 @@ import org.springframework.stereotype.Repository;
 
 import com.lti.entity.Question;
 import com.lti.entity.RegisteredUser;
+import com.lti.entity.TestReport;
 
 @Repository
 public class NewExamDao extends GenericDao {
 
 	public List<Question> fetchExam(String subjectName, int testLevel) {
 		
-	
 		return entityManager
 				.createQuery("select q from Question q where q.subjectName =:sbj and q.testLevel= :lvl")
 				.setParameter("sbj", subjectName)

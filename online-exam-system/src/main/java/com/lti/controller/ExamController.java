@@ -24,6 +24,12 @@ public class ExamController {
 	@GetMapping("/startexam")
 	public @ResponseBody List<Question> startExam(@RequestBody RegisteredUser registeredUser, @RequestParam("subjectName") String subjectName){
 		
+//		if(!newExamDao.hasClearedLevel(registeredUser, subjectName, 3)) {
+//			return newExamDao.fetchExam(subjectName, 3);
+//			}
+		
+		
+
 		return examService.takeExam(registeredUser, subjectName);
 		
 	}

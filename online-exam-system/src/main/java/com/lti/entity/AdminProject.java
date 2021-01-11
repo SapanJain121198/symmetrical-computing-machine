@@ -6,7 +6,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "TestReport")
+@Table(name = "Admin_Project")
 public class AdminProject {
 	
 	@Id

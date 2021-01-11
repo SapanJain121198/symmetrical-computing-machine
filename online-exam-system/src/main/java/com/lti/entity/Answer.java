@@ -19,13 +19,14 @@ public class Answer {
 	@JoinColumn(name = "reportId")
 	private TestReport testReport;
 
-	private int reportId;
+	//private int reportId;
 
 	@ManyToOne
 	@JoinColumn(name = "questionId")
 	private Question question;
 
-	private int questionId;
+	//private int questionId;
+	
 	private int optionChosen;
 
 	public int getAnswerId() {
@@ -36,21 +37,21 @@ public class Answer {
 		this.answerId = answerId;
 	}
 
-	public int getReportId() {
-		return reportId;
-	}
+//	public int getReportId() {
+//		return reportId;
+//	}
+//
+//	public void setReportId(int reportId) {
+//		this.reportId = reportId;
+//	}
 
-	public void setReportId(int reportId) {
-		this.reportId = reportId;
-	}
-
-	public int getQuestionId() {
-		return questionId;
-	}
-
-	public void setQuestionId(int questionId) {
-		this.questionId = questionId;
-	}
+//	public int getQuestionId() {
+//		return questionId;
+//	}
+//
+//	public void setQuestionId(int questionId) {
+//		this.questionId = questionId;
+//	}
 
 	public int getOptionChosen() {
 		return optionChosen;

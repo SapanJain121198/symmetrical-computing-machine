@@ -2,6 +2,8 @@ package com.lti.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.lti.dao.AdminProjectDao;
 import com.lti.dao.RegisteredUserDao;
@@ -11,6 +13,8 @@ import com.lti.entity.AdminProject;
 import com.lti.entity.RegisteredUser;
 import com.lti.exception.UserServiceException;
 
+@Service
+@Transactional
 public class UserServiceImpl implements UserService {
 
 	@Autowired
@@ -28,10 +32,10 @@ public class UserServiceImpl implements UserService {
 		Password pwd = new Password();
 		String password = pwd.makePassword();
 		
-		registeredUser.setPassword(password);
-		
 		RegisteredUser updatedUser = (RegisteredUser) registeredUserDao.save(registeredUser);
-
+		
+		registeredUser.setPassword(password);
+	
 		// code to send email to the customer on successful registration will be here
 
 		SendMail email= new SendMail();
