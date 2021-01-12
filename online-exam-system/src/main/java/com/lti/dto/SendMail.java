@@ -1,5 +1,6 @@
 package com.lti.dto;
 
+import java.net.PasswordAuthentication;
 import java.util.Properties;
 
 import javax.mail.Message;
@@ -22,20 +23,36 @@ public class SendMail {
 	      String to = registeredUser.getEmail();    // this needs to be created
 
 	      // Sender's email ID needs to be mentioned
-	      String from = "abcd@gmail.com";
+	      String from = "sapanjain121198@gmail.com";
 
 	      // Assuming you are sending email from localhost
 	      String host = "localhost";
 
 	      // Get system properties
-	      Properties properties = System.getProperties();
+	     // Properties properties = System.getProperties();
 
 	      // Setup mail server
-	      properties.setProperty("mail.smtp.host", host);
+	      //properties.setProperty("mail.smtp.host", host);
+	      
+	      final String SSL_FACTORY = "javax.net.ssl.SSLSocketFactory";
+	      // Get a Properties object
+	         Properties props = System.getProperties();
+	         props.setProperty("mail.smtp.host", "smtp.gmail.com");
+	         props.setProperty("mail.smtp.socketFactory.class", SSL_FACTORY);
+	         props.setProperty("mail.smtp.socketFactory.fallback", "false");
+	         props.setProperty("mail.smtp.port", "465");
+	         props.setProperty("mail.smtp.socketFactory.port", "587");
+	         props.put("mail.smtp.auth", "true");
+	         props.put("mail.debug", "true");
+	         props.put("mail.store.protocol", "pop3");
+	         props.put("mail.transport.protocol", "smtp");
+	      
+	      
+	      
 
 	      // Get the default Session object.
-	      Session session = Session.getDefaultInstance(properties);
-
+	      Session session = Session.getDefaultInstance(props);
+	         
 	      try {
 	         // Create a default MimeMessage object.
 	         MimeMessage message = new MimeMessage(session);

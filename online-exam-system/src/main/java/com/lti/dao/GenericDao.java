@@ -11,7 +11,7 @@ public class GenericDao {
 	@PersistenceContext
 	protected EntityManager entityManager;
 	
-	@Transactional
+
 	public Object save(Object obj) {
 			Object updatedObj = entityManager.merge(obj);
 			return updatedObj;
@@ -22,9 +22,6 @@ public class GenericDao {
 			E e = entityManager.find(clazz, pk);
 			return e;
 	}
-	
-
-
 }
 
 

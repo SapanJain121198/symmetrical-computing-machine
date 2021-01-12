@@ -2,10 +2,19 @@ package com.lti.dao;
 
 import org.springframework.stereotype.Repository;
 
+import com.lti.dto.Password;
 import com.lti.entity.RegisteredUser;
 
 @Repository
 public class RegisteredUserDao extends GenericDao {
+	
+	
+	public RegisteredUser saveUser(RegisteredUser registeredUser) {
+		String password = Password.makePassword();
+		registeredUser.setPassword(password);
+		RegisteredUser updatedRegisteredUser = entityManager.merge(registeredUser);
+		return updatedRegisteredUser;
+	}
 	
 	public boolean isUserRegistered(String email)
 	{

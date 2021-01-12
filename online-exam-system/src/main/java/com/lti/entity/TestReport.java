@@ -1,6 +1,7 @@
 package com.lti.entity;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -11,7 +12,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import java.util.*;
 @Entity
 @Table(name = "userReport")
 public class TestReport {
@@ -25,7 +25,7 @@ public class TestReport {
 	private int testLevel;
 	private String testSubjectName;
 	//private int userId;
-	private LocalDate dateAndTime;
+	private LocalDateTime dateAndTime;
 	
 	@ManyToOne
 	@JoinColumn(name = "userId")
@@ -85,16 +85,18 @@ public class TestReport {
 //		this.userId = userId;
 //	}
 
-	public LocalDate getDateAndTime() {
-		return dateAndTime;
-	}
-
-	public void setDateAndTime(LocalDate dateAndTime) {
-		this.dateAndTime = dateAndTime;
-	}
+	
 
 	public RegisteredUser getRegisteredUser() {
 		return registeredUser;
+	}
+
+	public LocalDateTime getDateAndTime() {
+		return dateAndTime;
+	}
+
+	public void setDateAndTime(LocalDateTime dateAndTime) {
+		this.dateAndTime = dateAndTime;
 	}
 
 	public void setRegisteredUser(RegisteredUser registeredUser) {

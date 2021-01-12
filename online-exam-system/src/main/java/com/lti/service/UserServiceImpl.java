@@ -14,7 +14,7 @@ import com.lti.entity.RegisteredUser;
 import com.lti.exception.UserServiceException;
 
 @Service
-@Transactional
+
 public class UserServiceImpl implements UserService {
 
 	@Autowired
@@ -24,23 +24,24 @@ public class UserServiceImpl implements UserService {
 	private AdminProjectDao adminProjectDao;
 
 	@Override
+	@Transactional
 	public int register(RegisteredUser registeredUser) {
 		if (registeredUserDao.isUserRegistered(registeredUser.getEmail()))
 			throw new UserServiceException("Student already registered");
 
 		
-		Password pwd = new Password();
-		String password = pwd.makePassword();
+		//Password pwd = new Password();
+		//String password = Password.makePassword();
 		
-		RegisteredUser updatedUser = (RegisteredUser) registeredUserDao.save(registeredUser);
+		RegisteredUser updatedUser = registeredUserDao.saveUser(registeredUser);
 		
-		registeredUser.setPassword(password);
+	//	updatedUser.setPassword(password);
 	
 		// code to send email to the customer on successful registration will be here
 
-		SendMail email= new SendMail();
-		
-		email.sendNotificationEmail(registeredUser);
+//		SendMail email= new SendMail();
+//		
+//		email.sendNotificationEmail(registeredUser);
 		
 		return updatedUser.getUserId();
 	}
@@ -86,6 +87,7 @@ public class UserServiceImpl implements UserService {
 	}
 	
 	@Override
+	@Transactional
 	public String forgotPassword(String newPassword, String confirmPassword, String email) {
 		
 		try {

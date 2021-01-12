@@ -1,5 +1,6 @@
 package com.lti.service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +13,7 @@ import com.lti.entity.RegisteredUser;
 import com.lti.entity.TestReport;
 
 @Service
-@Transactional
+
 public class ExamServiceImpl implements ExamService {
 	
 	@Autowired
@@ -25,18 +26,34 @@ public class ExamServiceImpl implements ExamService {
 			
 			TestReport testReport = new TestReport();
 			testReport.setTestSubjectName(subjectName);
+			testReport.setTestLevel(1);
+			testReport.setRegisteredUser(registeredUser);
+			testReport.setDateAndTime(LocalDateTime.now());
 			
-			
-			
-			
+		
 			return newExamDao.fetchExam(subjectName, 1);
 		}
 		
 		else if(!newExamDao.hasClearedLevel(registeredUser, subjectName, 2)) {
+			
+			TestReport testReport = new TestReport();
+			testReport.setTestSubjectName(subjectName);
+			testReport.setTestLevel(2);
+			testReport.setRegisteredUser(registeredUser);
+			testReport.setDateAndTime(LocalDateTime.now());
+			
 			return newExamDao.fetchExam(subjectName, 2);
 		}
 		
 		else if(!newExamDao.hasClearedLevel(registeredUser, subjectName, 3)) {
+			
+			TestReport testReport = new TestReport();
+			testReport.setTestSubjectName(subjectName);
+			testReport.setTestLevel(3);
+			testReport.setRegisteredUser(registeredUser);
+			testReport.setDateAndTime(LocalDateTime.now());
+			
+	
 		return newExamDao.fetchExam(subjectName, 3);
 		}
 		
