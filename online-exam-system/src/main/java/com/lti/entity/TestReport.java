@@ -28,7 +28,7 @@ public class TestReport {
 	//private int userId;
 	private LocalDateTime dateAndTime;
 	
-	@JsonIgnore
+	
 	@ManyToOne
 	@JoinColumn(name = "userId")
 	private RegisteredUser registeredUser;
