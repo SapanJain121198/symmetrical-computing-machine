@@ -9,10 +9,9 @@ import com.lti.entity.RegisteredUser;
 @Repository
 public class SearchStudentDao extends GenericDao {
 	
-	public List<RegisteredUser> fetchStudents(int score, int testLevel,String testSubjectName,String city,String state){
+	public List<RegisteredUser> fetchStudents(int testLevel,String testSubjectName,String city,String state){
 		return entityManager
-				.createQuery("select r from RegisteredUser  r innerjoin r.TestReport  t where t.score=:score and t. testLevel=:testLevel and t.testSubjectName=testSubjectName and r.city=:city and r.state=:state")
-				.setParameter("score", score)
+				.createQuery("select r from TestReport  t join t.registeredUser r where t.testLevel=:testLevel and t.testSubjectName=:testSubjectName and r.city=:city and r.state=:state")
 				.setParameter("testLevel",testLevel )
 				.setParameter("testSubjectName",testSubjectName )
 				.setParameter("city",city )

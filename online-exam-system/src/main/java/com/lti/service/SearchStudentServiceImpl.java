@@ -10,17 +10,15 @@ import com.lti.dao.SearchStudentDao;
 import com.lti.entity.RegisteredUser;
 
 @Service
-@Transactional
 public class SearchStudentServiceImpl implements SearchStudentService {
 	
 	@Autowired
 	private SearchStudentDao searchStudent;
 
 	@Override
-	public List<RegisteredUser> fetchStudents(int score, int testLevel, String testSubjectName, String city,
+	public List<RegisteredUser> fetchStudents(int testLevel, String testSubjectName, String city,
 			String state) {
 		// TODO Auto-generated method stub
-		return this.searchStudent.fetchStudents(score, testLevel, testSubjectName, city,
-				  state);
+		return this.searchStudent.fetchStudents( testLevel, testSubjectName, city, state);
 	}
 }
