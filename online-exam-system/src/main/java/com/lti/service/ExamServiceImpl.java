@@ -67,6 +67,7 @@ public class ExamServiceImpl implements ExamService {
 		
 		return newExamDao.fetchExam(subjectName, 1);
 		
+		
 	}
 	
 }
