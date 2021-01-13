@@ -18,7 +18,8 @@ public class RegisteredUserDao extends GenericDao {
 	
 	public RegisteredUser fetchUserById(int userId) {
 		return (RegisteredUser)entityManager.createQuery("select r from RegisteredUser r where r.userId =:userId")
-				.setParameter("userId",userId);
+				.setParameter("userId",userId)
+				.getSingleResult();
 		
 		//return updatedRegisteredUser;
 	}

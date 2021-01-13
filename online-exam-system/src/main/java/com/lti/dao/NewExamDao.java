@@ -21,12 +21,12 @@ public class NewExamDao extends GenericDao {
 
 	}
 	
-	public boolean hasClearedLevel(int userId, String subjectName, int testLevel) {
+	public boolean hasClearedLevel(RegisteredUser registeredUser, String subjectName, int testLevel) {
 		
 		//int id = registeredUser.getUserId();
 		
-		return (Integer)entityManager.createQuery("select r.score from Report r where r.score>=20 and r.registeredUser = :ru and r.testSubjectName = :sbj and r.testLevel = :lvl")
-				.setParameter(":ru",userId)
+		return (Integer)entityManager.createQuery("select r.score from TestReport r where r.score>=20 and r.registeredUser= :ru and r.testSubjectName = :sbj and r.testLevel = :lvl")
+				.setParameter("ru",registeredUser)
 				.setParameter("sbj", subjectName)
 				.setParameter("lvl", testLevel)
 				.getSingleResult() == 1 ? true : false;
