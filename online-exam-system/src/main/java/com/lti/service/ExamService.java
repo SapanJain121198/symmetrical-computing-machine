@@ -11,5 +11,5 @@ public interface ExamService {
 	
 	
 									
-	public List<Question> takeExam(String subjectName);
+	public List<Question> takeExam(int userId, String subjectName);
 }

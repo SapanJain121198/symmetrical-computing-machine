@@ -1,6 +1,5 @@
 package com.lti.entity;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -12,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 @Table(name = "userReport")
 public class TestReport {
@@ -27,11 +28,13 @@ public class TestReport {
 	//private int userId;
 	private LocalDateTime dateAndTime;
 	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "userId")
 	private RegisteredUser registeredUser;
 	
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "testReport", cascade= {CascadeType.REMOVE,CascadeType.PERSIST}) //persist because if we add a response then it will reflect in the report as well
 	private List <Answer> answers;
 	
@@ -44,14 +47,6 @@ public class TestReport {
 	public void setReportId(int reportId) {
 		this.reportId = reportId;
 	}
-
-//	public String getName() {
-//		return name;
-//	}
-//
-//	public void setName(String name) {
-//		this.name = name;
-//	}
 
 	public int getScore() {
 		return score;
@@ -76,16 +71,6 @@ public class TestReport {
 	public void setTestSubjectName(String testSubjectName) {
 		this.testSubjectName = testSubjectName;
 	}
-
-//	public int getUserId() {
-//		return userId;
-//	}
-//
-//	public void setUserId(int userId) {
-//		this.userId = userId;
-//	}
-
-	
 
 	public RegisteredUser getRegisteredUser() {
 		return registeredUser;

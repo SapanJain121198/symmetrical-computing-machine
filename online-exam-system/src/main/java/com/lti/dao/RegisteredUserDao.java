@@ -16,6 +16,13 @@ public class RegisteredUserDao extends GenericDao {
 		return updatedRegisteredUser;
 	}
 	
+	public RegisteredUser fetchUserById(int userId) {
+		return (RegisteredUser)entityManager.createQuery("select r from RegisteredUser r where r.userId =:userId")
+				.setParameter("userId",userId);
+		
+		//return updatedRegisteredUser;
+	}
+	
 	public boolean isUserRegistered(String email)
 	{
 		

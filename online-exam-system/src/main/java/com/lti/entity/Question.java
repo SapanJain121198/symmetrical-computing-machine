@@ -6,9 +6,10 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 @Entity
@@ -44,6 +45,7 @@ public class Question {
 	@Column(name="TESTLEVEL")
 	private int testLevel;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy="question")
 	private List<Answer> answers;
 

@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "Registered_User")
 public class RegisteredUser {
@@ -36,8 +38,9 @@ public class RegisteredUser {
 	
 	private String password;
 	
-	//@OneToMany(mappedBy="registeredUser", cascade = CascadeType.MERGE)
-	//private List<TestReport> testReports;
+	@JsonIgnore
+	@OneToMany(mappedBy="registeredUser", cascade = CascadeType.MERGE)
+	private List<TestReport> testReports;
 
 	public int getUserId() {
 		return userId;
@@ -119,10 +122,10 @@ public class RegisteredUser {
 		this.password = password;
 	}
 	
-//	public List<TestReport> getTestReports() {
-//		return testReports;
-//	}
-//	public void setTestReports(List<TestReport> testReports) {
-//		this.testReports = testReports;
-//	}
+	public List<TestReport> getTestReports() {
+		return testReports;
+	}
+	public void setTestReports(List<TestReport> testReports) {
+		this.testReports = testReports;
+	}
 }

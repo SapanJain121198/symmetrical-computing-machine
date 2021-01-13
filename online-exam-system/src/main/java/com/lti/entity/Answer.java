@@ -7,6 +7,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "Answer")
 public class Answer {
@@ -15,17 +17,17 @@ public class Answer {
 	@GeneratedValue
 	private int answerId;
 
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "reportId")
 	private TestReport testReport;
 
-	//private int reportId;
 
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "questionId")
 	private Question question;
 
-	//private int questionId;
 	
 	private int optionChosen;
 
@@ -36,22 +38,6 @@ public class Answer {
 	public void setAnswerId(int answerId) {
 		this.answerId = answerId;
 	}
-
-//	public int getReportId() {
-//		return reportId;
-//	}
-//
-//	public void setReportId(int reportId) {
-//		this.reportId = reportId;
-//	}
-
-//	public int getQuestionId() {
-//		return questionId;
-//	}
-//
-//	public void setQuestionId(int questionId) {
-//		this.questionId = questionId;
-//	}
 
 	public int getOptionChosen() {
 		return optionChosen;
