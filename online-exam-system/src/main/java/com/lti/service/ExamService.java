@@ -10,6 +10,6 @@ import com.lti.entity.RegisteredUser;
 public interface ExamService {
 	
 	
-
-	public List<Question> takeExam(RegisteredUser registeredUser, String subjectName);
+									
+	public List<Question> takeExam(String subjectName);
 }

@@ -22,16 +22,16 @@ public class ExamController {
 	private ExamService examService;
 	
 	@GetMapping("/startexam")
-	public @ResponseBody List<Question> startExam(@RequestBody RegisteredUser registeredUser, @RequestParam("subjectName") String subjectName){
+	public @ResponseBody List<Question> startExam(@RequestParam("subjectName") String subjectName){
 		
 //		if(!newExamDao.hasClearedLevel(registeredUser, subjectName, 3)) {
 //			return newExamDao.fetchExam(subjectName, 3);
 //			}
 		
-		
+		//public @ResponseBody List<Question> startExam(@RequestBody RegisteredUser registeredUser, @RequestParam("subjectName") String subjectName)
 
-		return examService.takeExam(registeredUser, subjectName);
-		
+		return examService.takeExam(subjectName);
+									//registeredUser,
 	}
 	
 }
