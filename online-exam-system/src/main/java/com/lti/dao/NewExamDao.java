@@ -23,8 +23,9 @@ public class NewExamDao extends GenericDao {
 	
 	public boolean hasClearedLevel(int userId, String subjectName, int testLevel) {
 		
+		//select t from TestReport t join t.registeredUser r  where t.score>=20 and r.userId = :ru and t.testSubjectName = :sbj and t.testLevel = :lvl
 		
-		return (Integer)entityManager.createQuery("select t from TestReport t join t.registeredUser r  where t.score>=20 and r.userId = :ru and t.testSubjectName = :sbj and t.testLevel = :lvl")
+		return (Integer)entityManager.createQuery("select t.score from TestReport t join t.registeredUser r  where t.score>=20 and r.userId = :ru and t.testSubjectName = :sbj and t.testLevel = :lvl")
 				.setParameter("ru",userId)
 				.setParameter("sbj", subjectName)
 				.setParameter("lvl", testLevel)

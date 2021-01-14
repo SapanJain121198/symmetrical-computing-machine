@@ -14,18 +14,16 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
-@Table(name = "userReport")
+@Table(name = "UserReport")
 public class TestReport {
 
 	@Id
 	@GeneratedValue
 	private int reportId;
 	
-	//private String name;
 	private int score;
 	private int testLevel;
 	private String testSubjectName;
-	//private int userId;
 	private LocalDateTime dateAndTime;
 	
 	
