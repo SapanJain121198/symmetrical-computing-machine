@@ -23,6 +23,8 @@ public class ExamServiceImpl implements ExamService {
 	@Autowired
 	private RegisteredUserDao registeredUserDao;
 	
+	int reportId;
+	
 	@Transactional
 	@Override
 	public List<Question> takeExam(int userId, String subjectName) {
@@ -35,6 +37,8 @@ public class ExamServiceImpl implements ExamService {
 			testReport.setRegisteredUser(registeredUserDao.fetchByKey(RegisteredUser.class, userId));
 			testReport.setDateAndTime(LocalDateTime.now());
 			newExamDao.save(testReport);
+			
+			reportId = testReport.getReportId();
 			
 			return newExamDao.fetchExam(subjectName, 1);
 		}
