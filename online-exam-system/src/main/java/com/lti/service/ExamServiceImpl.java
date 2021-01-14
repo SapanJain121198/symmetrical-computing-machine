@@ -1,11 +1,11 @@
 package com.lti.service;
 
 import java.time.LocalDateTime;
-import java.util.*;
-
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.lti.dao.NewExamDao;
 import com.lti.dao.RegisteredUserDao;
@@ -23,6 +23,7 @@ public class ExamServiceImpl implements ExamService {
 	@Autowired
 	private RegisteredUserDao registeredUserDao;
 	
+	@Transactional
 	@Override
 	public List<Question> takeExam(int userId, String subjectName) {
 		
@@ -33,6 +34,7 @@ public class ExamServiceImpl implements ExamService {
 			testReport.setTestLevel(1);
 			testReport.setRegisteredUser(registeredUserDao.fetchByKey(RegisteredUser.class, userId));
 			testReport.setDateAndTime(LocalDateTime.now());
+			newExamDao.save(testReport);
 			
 			return newExamDao.fetchExam(subjectName, 1);
 		}
@@ -53,6 +55,7 @@ public class ExamServiceImpl implements ExamService {
 		testReport.setTestLevel(1);
 		testReport.setRegisteredUser(registeredUserDao.fetchByKey(RegisteredUser.class, userId));
 		testReport.setDateAndTime(LocalDateTime.now());
+		newExamDao.save(testReport);
 		
 		return newExamDao.fetchExam(subjectName, 1);
 		
