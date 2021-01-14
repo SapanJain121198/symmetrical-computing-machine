@@ -15,8 +15,8 @@ public class ResponseServiceImpl implements ResponseService {
 	private ResponseDao responseDao;
 
 	@Override
-	public void saveResponse(Question question, TestReport testReport, int optionChosen) {
-	responseDao.saveResponse(question, testReport, optionChosen);
+	public void saveResponse(int questionId, int reportId, int optionChosen) {
+	   responseDao.saveResponse(questionId, reportId, optionChosen);
 	}
 	
 	

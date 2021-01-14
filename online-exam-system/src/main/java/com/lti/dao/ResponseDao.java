@@ -1,6 +1,8 @@
 package com.lti.dao;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.lti.entity.Answer;
 import com.lti.entity.Question;
@@ -16,15 +18,19 @@ public class ResponseDao extends GenericDao {
 		// and we will  update the score and dateandtime of the test at the 
 		// time of fining the test
 	
-	public void saveResponse(Question question, TestReport testReport, int optionChosen) {
+	@Autowired
+	private GenericDao genericDao;
+	
+	@Transactional
+	public void saveResponse(int questionId, int reportId, int optionChosen) {
 		
 		Answer answer = new Answer();
-		answer.setTestReport(testReport);
-		answer.setQuestion(question);
 		answer.setOptionChosen(optionChosen);
+		answer.setTestReport(genericDao.fetchByKey(TestReport.class, reportId));
+		answer.setQuestion(genericDao.fetchByKey(Question.class, questionId));
 		
-		GenericDao genericDao = new GenericDao();
 		genericDao.save(answer);
+	
 	}
 	
 }
