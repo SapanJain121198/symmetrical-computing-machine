@@ -7,6 +7,7 @@ import com.lti.entity.TestReport;
 
 
 public interface ReportGenerationService {
-
 	public List<TestReport> fetchAllReportsList();
+
+	
 }

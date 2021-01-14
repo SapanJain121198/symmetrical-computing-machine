@@ -16,9 +16,9 @@ public class SearchStudentServiceImpl implements SearchStudentService {
 	private SearchStudentDao searchStudent;
 
 	@Override
-	public List<RegisteredUser> fetchStudents(int testLevel, String testSubjectName, String city,
+	public List<RegisteredUser> fetchStudents(int score,int testLevel, String testSubjectName, String city,
 			String state) {
 		// TODO Auto-generated method stub
-		return this.searchStudent.fetchStudents( testLevel, testSubjectName, city, state);
+		return this.searchStudent.fetchStudents(score, testLevel, testSubjectName, city, state);
 	}
 }
