@@ -27,8 +27,9 @@ public class ScoreCalculationServiceImpl implements ScoreCalculationService {
 		Question question = scoreCalculateDao.fetchByKey(Question.class, questionId);
 		
 		if(question.getCorrectAnswer() == optionChosen) {
+			
+			score =3;
 			scoreCalculateDao.ScoreUpdation(examService.reportId , score);
 		}
-		
 	}
 }

@@ -15,7 +15,9 @@ public class ScoreCalculationDao extends GenericDao {
 		
 		TestReport testReport = genericDao.fetchByKey(TestReport.class, reportId);
 		
-		testReport.setScore(score);
+		int updatedScore = testReport.getScore()+score;
+		
+		testReport.setScore(updatedScore);
 		
 		entityManager.merge(testReport);
 		
