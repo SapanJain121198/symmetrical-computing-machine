@@ -16,7 +16,7 @@ public class ScoreCalculationController {
 	private ScoreCalculationService scoreCalculationService;
 	
 	@PostMapping("/submitresponse")
-	public void UpdateScore(@RequestParam("questionid") int questionId, @RequestParam("optionChosen") int optionChosen) {
+	public void UpdateScore(@RequestParam("questionId") int questionId, @RequestParam("optionChosen") int optionChosen) {
 		
 		scoreCalculationService.ScoreCalcuation(questionId, optionChosen);
 		

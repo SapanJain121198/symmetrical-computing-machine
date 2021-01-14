@@ -2,7 +2,7 @@ package com.lti.dto;
 
 public class ReportCardDto {
 	
-	private int userId;
+	//private int userId;
 	private String fullName;
 	private int score;
 	private int testLevel;
@@ -32,11 +32,11 @@ public class ReportCardDto {
 	public void setTestSubjectName(String testSubjectName) {
 		this.testSubjectName = testSubjectName;
 	}
-	public int getUserId() {
-		return userId;
-	}
-	public void setUserId(int userId) {
-		this.userId = userId;
-	}
+//	public int getUserId() {
+//		return userId;
+//	}
+//	public void setUserId(int userId) {
+//		this.userId = userId;
+//	}
 	
 }

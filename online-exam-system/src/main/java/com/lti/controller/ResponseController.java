@@ -16,9 +16,9 @@ public class ResponseController {
 	private ResponseService responseService;
 	
 	@GetMapping("/response")
-	public void saveChosenOption(@RequestParam("questionId") int questionId, @RequestParam("reportId") int reportId , @RequestParam("optionChosen") int optionChosen) {
+	public void saveChosenOption(@RequestParam("questionId") int questionId, @RequestParam("optionChosen") int optionChosen) {
 		
-		responseService.saveResponse(questionId, reportId, optionChosen);
+		responseService.saveResponse(questionId, optionChosen);
 		
 	}
 
