@@ -22,7 +22,7 @@ public class SearchStudentController {
 	@Autowired
 	private SearchStudentService searchStudentService;
 	
-	@PostMapping("/searchstudent")
+	@GetMapping("/searchstudent")
 	public @ResponseBody List<RegisteredUser> fetchStudents(@RequestParam("score") int score,@RequestParam("testLevel") int testLevel, @RequestParam("testSubjectName") String testSubjectName,
 			@RequestParam("city") String city,@RequestParam("state") String state){
 	       //System.out.println(testLevel);

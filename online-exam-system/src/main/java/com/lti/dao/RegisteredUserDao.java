@@ -42,6 +42,7 @@ public class RegisteredUserDao extends GenericDao {
 				.setParameter("email", email).setParameter("password", password).getSingleResult();
 	}
 	
+
 	
 	public void changePassword(RegisteredUser registeredUser) {
 		

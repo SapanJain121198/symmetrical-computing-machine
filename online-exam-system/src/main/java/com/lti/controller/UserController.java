@@ -1,9 +1,5 @@
 package com.lti.controller;
 
-import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,6 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.lti.dto.AdminLogin;
+import com.lti.dto.AdminLoginStatus;
 import com.lti.dto.Login;
 import com.lti.dto.LoginStatus;
 import com.lti.dto.RegisterStatus;
@@ -77,18 +74,17 @@ public class UserController {
 	}
 	
 	@PostMapping(path = "/adminlogin")
-	public @ResponseBody LoginStatus adminLogin(@RequestBody AdminLogin login) {
+	public @ResponseBody AdminLoginStatus adminLogin(@RequestBody AdminLogin login) {
 
 		try {
 			AdminProject admin= userService.adminLogin(login.getId(), login.getPassword());
-			LoginStatus status = new LoginStatus();
+			AdminLoginStatus status = new AdminLoginStatus();
 			status.setMessage("Login Success");
 			status.setStatus(StatusType.SUCCESS);
-			status.setUserId(admin.getId());
-	        status.setFullName(admin.getPassword());
+			status.setId(admin.getId());
 			return status;
 		} catch(UserServiceException e ){
-			LoginStatus status = new LoginStatus();
+			AdminLoginStatus status = new AdminLoginStatus();
 			status.setStatus(StatusType.FAILED);
 			status.setMessage(e.getMessage());
 			

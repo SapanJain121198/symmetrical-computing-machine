@@ -13,7 +13,7 @@ import com.lti.entity.Question;
 import com.lti.service.AdminFunctionalityService;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin
 public class AdminFunctionalityController {
 
 	@Autowired

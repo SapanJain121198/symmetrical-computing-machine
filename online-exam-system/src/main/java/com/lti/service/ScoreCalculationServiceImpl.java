@@ -1,13 +1,11 @@
 package com.lti.service;
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.lti.dao.ScoreCalculationDao;
 import com.lti.entity.Question;
-import com.lti.service.ExamServiceImpl;
+import com.lti.entity.TestReport;
 
 @Service
 public class ScoreCalculationServiceImpl implements ScoreCalculationService {
@@ -26,11 +24,18 @@ public class ScoreCalculationServiceImpl implements ScoreCalculationService {
 		int score = 0;
 		
 		Question question = scoreCalculateDao.fetchByKey(Question.class, questionId);
+		TestReport testReport = scoreCalculateDao.fetchByKey(TestReport.class, examService.getReportId());
 		
 		if(question.getCorrectAnswer() == optionChosen) {
 			
 			score =3;
-			scoreCalculateDao.ScoreUpdation(examService.reportId , score);
+			scoreCalculateDao.ScoreUpdation(testReport , score);
+		}
+		
+		else {
+			score =0;
+			scoreCalculateDao.ScoreUpdation(testReport , score);
+			
 		}
 	}
 }

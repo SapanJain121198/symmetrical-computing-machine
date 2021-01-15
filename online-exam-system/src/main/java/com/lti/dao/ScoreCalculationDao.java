@@ -1,19 +1,14 @@
 package com.lti.dao;
 
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.lti.entity.TestReport;
 
 @Repository
 public class ScoreCalculationDao extends GenericDao {
 	
-
-	
-	public void ScoreUpdation(int reportId, int score) {
-		
-		GenericDao genericDao = new GenericDao();
-		
-		TestReport testReport = genericDao.fetchByKey(TestReport.class, reportId);
+	public void ScoreUpdation(TestReport testReport, int score) {
 		
 		int updatedScore = testReport.getScore()+score;
 		
@@ -22,5 +17,4 @@ public class ScoreCalculationDao extends GenericDao {
 		entityManager.merge(testReport);
 		
 	}
-	
 }
