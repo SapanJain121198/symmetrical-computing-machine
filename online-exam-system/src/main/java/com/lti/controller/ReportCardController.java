@@ -7,7 +7,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.lti.dao.RegisteredUserDao;
 import com.lti.dto.ReportCardDto;
+import com.lti.entity.RegisteredUser;
 import com.lti.service.ReportCardService;
 
 
@@ -20,6 +22,7 @@ public class ReportCardController {
 	
 	@GetMapping("/generatereport")
 	public @ResponseBody ReportCardDto generateReport(@RequestParam("userId") int userId) {
+		
 		return reportCardService.generateReport(userId);
 		
 	}

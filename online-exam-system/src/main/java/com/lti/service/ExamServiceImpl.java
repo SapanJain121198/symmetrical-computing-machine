@@ -23,7 +23,7 @@ public class ExamServiceImpl implements ExamService {
 	@Autowired
 	private RegisteredUserDao registeredUserDao;
 	
-	public int reportId= 1;
+	public int reportId= 2;
 	
 	
 

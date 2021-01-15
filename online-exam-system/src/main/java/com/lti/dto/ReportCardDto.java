@@ -1,8 +1,13 @@
 package com.lti.dto;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+
 public class ReportCardDto {
 	
-	//private int userId;
 	private String fullName;
 	private int score;
 	private int testLevel;

@@ -17,8 +17,7 @@ public class ReportCardServiceImpl implements ReportCardService{
 	
 	@Override
 	public ReportCardDto generateReport(int userId) {
-		// TODO Auto-generated method stub
-		return reportCardDao.generateReport(userId,examService.reportId);
+		return reportCardDao.generateReport(userId,examService.getReportId());
 	}
 	
 }
