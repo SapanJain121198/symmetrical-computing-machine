@@ -8,11 +8,13 @@ import com.lti.entity.Question;
 @Repository
 public class AdminFunctionalityDao extends GenericDao {
 	
+	@Transactional
+	public void removeQuestion(String subjectName, int testLevel)
+	{
 	
-	/*@Transactional
-	public void  addQuestionToDb(Question question )
-	{ 
-		entityManager.persist(question);
+		entityManager.createQuery("delete from Question q where q.subjectName=:sbj and q.testLevel=:test")
+		.setParameter("sbj", subjectName)
+		.setParameter("test", testLevel).executeUpdate();
 		
-	}*/
+	}
 }

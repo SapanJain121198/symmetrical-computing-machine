@@ -9,4 +9,6 @@ public interface AdminFunctionalityService {
 	public void addQuestion(Question question);
 	
 	public void fileUpload(MultipartFile file);
+	
+	public void removeQuestion(String subjectName, int testLevel);
 }

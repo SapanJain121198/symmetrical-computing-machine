@@ -43,6 +43,14 @@ public class AdminFunctionalityServiceImpl implements AdminFunctionalityService 
 	  }*/
 		
 	}
+    
+    
+    @Override
+	public void removeQuestion(String subjectName, int testLevel) {
+		
+		adminFunctionalityDao.removeQuestion(subjectName, testLevel);
+		
+	}
 	
 	
 }

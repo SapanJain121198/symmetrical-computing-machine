@@ -33,5 +33,12 @@ public class AdminFunctionalityController {
 		adminFunctionalityService.fileUpload(file);
 		
 	}
+	
+	@GetMapping("/removequestion")
+	public void removeQuestion(@RequestParam(name="subjectName") String subjectName , @RequestParam(name="testLevel") int testLevel)
+	{   
+		
+		adminFunctionalityService.removeQuestion(subjectName, testLevel);
+	}
 
 }
