@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
+import com.lti.dto.ExamQuestions;
 import com.lti.entity.Question;
 import com.lti.entity.RegisteredUser;
 import com.lti.entity.TestReport;
@@ -11,13 +12,22 @@ import com.lti.entity.TestReport;
 @Repository
 public class NewExamDao extends GenericDao {
 
-	public List<Question> fetchExam(String subjectName, int testLevel) {
+	public ExamQuestions fetchExam(String subjectName,TestReport testReport, int testLevel) {
 		
-		return entityManager
+		List<Question> questionList =  entityManager
 				.createQuery("select q from Question q where q.subjectName =:sbj and q.testLevel= :lvl")
 				.setParameter("sbj", subjectName)
 				.setParameter("lvl", testLevel)
 				.getResultList();
+		
+		ExamQuestions examQuestions = new ExamQuestions();
+		
+		TestReport updatedTestReport = entityManager.merge(testReport);
+		
+		examQuestions.setQuestions(questionList);
+		examQuestions.setReportId(updatedTestReport.getReportId());
+		
+		return examQuestions;
 
 	}
 	

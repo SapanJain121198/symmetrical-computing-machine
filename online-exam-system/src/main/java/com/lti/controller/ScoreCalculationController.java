@@ -17,9 +17,9 @@ public class ScoreCalculationController {
 	private ScoreCalculationService scoreCalculationService;
 	
 	@GetMapping("/submitresponse")
-	public void UpdateScore(@RequestParam("questionId") int questionId, @RequestParam("optionChosen") int optionChosen) {
+	public void UpdateScore(@RequestParam("questionId") int questionId, @RequestParam("optionChosen") int optionChosen, @RequestParam("reportId") int reportId ) {
 		
-		scoreCalculationService.ScoreCalcuation(questionId, optionChosen);
+		scoreCalculationService.ScoreCalcuation(questionId, optionChosen, reportId);
 		
 	}
 

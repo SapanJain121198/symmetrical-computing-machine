@@ -1,15 +1,10 @@
 package com.lti.service;
 
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-
-import com.lti.entity.Question;
-import com.lti.entity.RegisteredUser;
+import com.lti.dto.ExamQuestions;
 
 public interface ExamService {
 	
 	
 									
-	public List<Question> takeExam(int userId, String subjectName);
+	public ExamQuestions takeExam(int userId, String subjectName);
 }

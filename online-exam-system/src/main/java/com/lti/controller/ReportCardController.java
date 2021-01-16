@@ -21,9 +21,9 @@ public class ReportCardController {
 	private ReportCardService reportCardService;
 	
 	@GetMapping("/generatereport")
-	public @ResponseBody ReportCardDto generateReport(@RequestParam("userId") int userId) {
+	public @ResponseBody ReportCardDto generateReport(@RequestParam("userId") int userId, @RequestParam("reportId") int reportId ) {
 		
-		return reportCardService.generateReport(userId);
+		return reportCardService.generateReport(userId, reportId);
 		
 	}
 	

@@ -14,17 +14,15 @@ public class ScoreCalculationServiceImpl implements ScoreCalculationService {
 	@Autowired
 	private ScoreCalculationDao scoreCalculateDao;
 	
-	@Autowired 
-	private ExamServiceImpl examService;
 	
 	@Transactional
 	@Override
-	public void ScoreCalcuation(int questionId, int optionChosen) {
+	public void ScoreCalcuation(int questionId, int optionChosen, int reportId) {
 		
 		int score = 0;
 		
 		Question question = scoreCalculateDao.fetchByKey(Question.class, questionId);
-		TestReport testReport = scoreCalculateDao.fetchByKey(TestReport.class, examService.getReportId());
+		TestReport testReport = scoreCalculateDao.fetchByKey(TestReport.class, reportId);
 		
 		if(question.getCorrectAnswer() == optionChosen) {
 			

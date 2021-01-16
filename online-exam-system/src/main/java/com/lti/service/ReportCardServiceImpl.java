@@ -12,12 +12,9 @@ public class ReportCardServiceImpl implements ReportCardService{
 	@Autowired
 	ReportCardDao reportCardDao;
     
-	@Autowired
-	private ExamServiceImpl examService;
-	
 	@Override
-	public ReportCardDto generateReport(int userId) {
-		return reportCardDao.generateReport(userId,examService.getReportId());
+	public ReportCardDto generateReport(int userId, int reportId) {
+		return reportCardDao.generateReport(userId, reportId);
 	}
 	
 }
