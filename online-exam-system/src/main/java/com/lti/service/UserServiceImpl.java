@@ -1,5 +1,7 @@
 package com.lti.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
@@ -7,10 +9,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.lti.dao.AdminProjectDao;
 import com.lti.dao.RegisteredUserDao;
-import com.lti.dto.Password;
 import com.lti.dto.SendMail;
 import com.lti.entity.AdminProject;
 import com.lti.entity.RegisteredUser;
+import com.lti.entity.TestReport;
 import com.lti.exception.UserServiceException;
 
 @Service
@@ -29,19 +31,14 @@ public class UserServiceImpl implements UserService {
 		if (registeredUserDao.isUserRegistered(registeredUser.getEmail()))
 			throw new UserServiceException("Student already registered");
 
-		
-		//Password pwd = new Password();
-		//String password = Password.makePassword();
-		
+
 		RegisteredUser updatedUser = registeredUserDao.saveUser(registeredUser);
 		
-	//	updatedUser.setPassword(password);
-	
 		// code to send email to the customer on successful registration will be here
 
-//		SendMail email= new SendMail();
-//		
-//		email.sendNotificationEmail(registeredUser);
+		SendMail email= new SendMail();
+	
+		email.sendNotificationEmail(registeredUser);
 		
 		return updatedUser.getUserId();
 	}
@@ -86,35 +83,32 @@ public class UserServiceImpl implements UserService {
 		}
 	}
 	
-	@Override
-	@Transactional
-	public String forgotPassword(String newPassword, String confirmPassword, String email) {
+	
+	public List<TestReport> fetchUserReport(int userId){
 		
-		try {
-			
-			// We have to right a logic for sending a reset password link to the user
-			
-			RegisteredUser registeredUser=new RegisteredUser();
-			if (!registeredUserDao.isUserRegistered(email))
-				throw new UserServiceException("Customer not registered!");
-			
-			if(newPassword.equals(confirmPassword)) {
-				registeredUser.setPassword(newPassword);
-				registeredUserDao.changePassword(registeredUser);
-				
-				SendMail mail= new SendMail();
-				
-				mail.sendNotificationForPassword(registeredUser);
-				
-				}
-			
-		
-			return "Password Changed Successfully";
-			}
-			catch(UserServiceException e) {
-				throw new UserServiceException("Password not matching");
-				
-			}
+		return registeredUserDao.fetchUserReport(userId);
 		
 	}
+	
+	public int MaxLevelCleared(int userId, String subjectName) {
+		
+		return registeredUserDao.MaxLevelCleared(userId, subjectName);
+		
+	}
+	
+	@Override
+	@Transactional
+	public void resetPassword(String email) {
+		if (registeredUserDao.isUserRegistered(email)) {
+			SendMail reset= new SendMail();
+			reset.sendNotificationForPassword(email);
+		}
+		
+		else
+			throw new UserServiceException("Please enter registered email id");
+		
+	
+	}
+	
+	
 }

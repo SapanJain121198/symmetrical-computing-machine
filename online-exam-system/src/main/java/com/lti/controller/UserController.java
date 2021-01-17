@@ -1,7 +1,10 @@
 package com.lti.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +20,7 @@ import com.lti.dto.RegisterStatus;
 import com.lti.dto.Status.StatusType;
 import com.lti.entity.AdminProject;
 import com.lti.entity.RegisteredUser;
+import com.lti.entity.TestReport;
 import com.lti.exception.UserServiceException;
 import com.lti.service.UserService;
 
@@ -93,20 +97,28 @@ public class UserController {
 	}
 	
 	@RequestMapping(path="/changepassword")
-	public @ResponseBody void changePassword(@RequestParam("newpassword") String newPassword,@RequestParam("confirmpassword") String confirmPassword,@RequestParam("email") String email){
+	public @ResponseBody void changePassword(@RequestParam("email") String email){
 		
-		userService.forgotPassword(newPassword, confirmPassword, email);
+		userService.resetPassword(email);;
 			
 		}
 	
 	
-//	@RequestMapping(path="/newexam/java")
-//	public @ResponseBody void JavaExam(@RequestParam(@RequestBody RegisteredUser registeredUser)  {
-//		
-//		registeredUser.takeJavaExam
-//		
-//		
-//	}
 	
+	
+	@GetMapping("/fetchreport")
+	public @ResponseBody List<TestReport> fetchReportOfUser(@RequestParam("userId") int userId){
+		
+	return userService.fetchUserReport(userId);
+	}
+	
+	@GetMapping("/maxlevel")
+public int MaxLevelCleared(@RequestParam("userId") int userId, @RequestParam("subjectName") String subjectName ) {
+		
+		return userService.MaxLevelCleared(userId, subjectName);
+		
+	}
+	
+
 	}
 

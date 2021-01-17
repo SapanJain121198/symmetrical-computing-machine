@@ -2,6 +2,8 @@ package com.lti.service;
 
 import com.lti.entity.AdminProject;
 import com.lti.entity.RegisteredUser;
+import com.lti.entity.TestReport;
+
 import java.util.*;
 
 public interface UserService {
@@ -10,6 +12,9 @@ public interface UserService {
 	public  RegisteredUser userLogin(String email , String password);
 	public AdminProject adminLogin(int id,String password );
 	
-	public String forgotPassword(String newPassword, String confirmPassword, String email);
-    
+	public List<TestReport> fetchUserReport(int userId);
+	
+	public int MaxLevelCleared(int userId, String subjectName);
+	
+	public void resetPassword(String email);
 }
