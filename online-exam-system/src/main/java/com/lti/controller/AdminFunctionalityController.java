@@ -41,5 +41,26 @@ public class AdminFunctionalityController {
 		
 		adminFunctionalityService.removeQuestion(subjectName, testLevel);
 	}
+	
+	@GetMapping("/viewQuestion")
+	public List<Question> fetchQuestions()//@RequestParam(name="subjectName") String subjectName, @RequestParam(name="testLevel") int testLevel)
+	{
+		return adminFunctionalityService.fetchQuestions();//subjectName, testLevel);
+	}
+	
+	@GetMapping("/getquestion")
+	public Question getQuestionById(@RequestParam(name="questionId") int questionId)
+	{
+		return adminFunctionalityService.getQuestionById(questionId);
+	}
+	
+    
+	@PostMapping("/updatequestion")
+	public void updateQuestion(  @RequestParam(name="questionId") int questionId ,  @RequestBody Question question)
+	{
+		 adminFunctionalityService.updateQuestion(questionId, question);
+		
+		
+	}
 
 }

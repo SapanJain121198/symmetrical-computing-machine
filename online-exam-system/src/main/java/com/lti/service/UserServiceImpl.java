@@ -96,7 +96,6 @@ public class UserServiceImpl implements UserService {
 		
 	}
 	
-	@Override
 	@Transactional
 	public void resetPassword(String email) {
 		if (registeredUserDao.isUserRegistered(email)) {

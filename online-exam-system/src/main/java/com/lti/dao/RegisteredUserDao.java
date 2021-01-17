@@ -26,7 +26,7 @@ public class RegisteredUserDao extends GenericDao {
 	}
 	
 	public RegisteredUser fetchUserByEmailId(String email) {
-		return (RegisteredUser)entityManager.createQuery("select r from RegisteredUser r where r.em =:email")
+		return (RegisteredUser)entityManager.createQuery("select r from RegisteredUser r where r.email =:em")
 				.setParameter("em",email)
 				.getSingleResult();
 	}

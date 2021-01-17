@@ -3,6 +3,8 @@ package com.lti.service;
 
 
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -49,6 +51,27 @@ public class AdminFunctionalityServiceImpl implements AdminFunctionalityService 
 	public void removeQuestion(String subjectName, int testLevel) {
 		
 		adminFunctionalityDao.removeQuestion(subjectName, testLevel);
+		
+	}
+    
+    @Override
+	public List<Question> fetchQuestions()
+	{//String subjectName, int testLevel) {
+		
+		return adminFunctionalityDao.fetchQuestions();
+	}
+
+	@Override
+	public Question getQuestionById(int questionId) {
+		
+		return adminFunctionalityDao.getQuestionById(questionId);
+		
+	}
+
+	@Override
+	public void updateQuestion(int questionId,  Question question) {
+		
+		adminFunctionalityDao.updateQuestion(questionId, question);
 		
 	}
 	

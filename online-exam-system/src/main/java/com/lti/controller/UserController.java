@@ -96,7 +96,7 @@ public class UserController {
 		}
 	}
 	
-	@RequestMapping(path="/changepassword")
+	@GetMapping(path="/changepassword")
 	public @ResponseBody void changePassword(@RequestParam("email") String email){
 		
 		userService.resetPassword(email);;
