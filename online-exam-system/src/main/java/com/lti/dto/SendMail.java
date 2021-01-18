@@ -109,7 +109,7 @@ public void sendNotificationForPassword(String email) {
 	         message.setSubject("Your online exam system login credentials!!!");
 
 	         // Now set the actual message  
-	         String pwd = (registeredUserDao.fetchUserById(1179)).getPassword();
+	         String pwd = registeredUserDao.fetchPasswordByEmailId(email);
 	         message.setText("Your registered email is "+ email +"  Password is "+ pwd);
 
 	         // Send message

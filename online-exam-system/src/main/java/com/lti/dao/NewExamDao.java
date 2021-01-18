@@ -25,7 +25,7 @@ public class NewExamDao extends GenericDao {
 		
 		Collections.shuffle(questionId);
 		List<Integer> questionIdNew = new ArrayList<Integer>() ;
-		for(int i = 0; i<5 ;i++) {
+		for(int i = 0; i<10 ;i++) {
 			
 			
 			questionIdNew.add(questionId.get(i));
