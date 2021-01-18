@@ -32,51 +32,33 @@ public class ExamServiceImpl implements ExamService {
 	@Override
 	public ExamQuestions takeExam(int userId, String subjectName) {
 		
-//		if(!newExamDao.hasClearedLevel(userId, subjectName, 1)) {
-//			
-//			TestReport testReport = new TestReport();
-//			testReport.setTestSubjectName(subjectName);
-//			testReport.setTestLevel(1);
-//			testReport.setRegisteredUser(registeredUserDao.fetchByKey(RegisteredUser.class, userId));
-//			testReport.setDateAndTime(LocalDateTime.now());
-//			newExamDao.save(testReport);
-//			
-//			reportId = testReport.getReportId();
-//		 // we have hardcoded just to test
-//			
-//			//reportId = 1012;
-//			
-//			return newExamDao.fetchExam(subjectName, 1);
-//		}
-//		
-//		else if(!newExamDao.hasClearedLevel(userId, subjectName, 2)) {
-//			
-//			TestReport testReport = new TestReport();
-//			testReport.setTestSubjectName(subjectName);
-//			testReport.setTestLevel(2);
-//			testReport.setRegisteredUser(registeredUserDao.fetchByKey(RegisteredUser.class, userId));
-//			testReport.setDateAndTime(LocalDateTime.now());
-//			
-//			return newExamDao.fetchExam(subjectName, 1);
-//		}
+		if(!newExamDao.hasClearedLevel(userId, subjectName, 1)) {
+			
+			TestReport testReport = new TestReport();
+			testReport.setTestSubjectName(subjectName);
+			testReport.setTestLevel(1);
+			testReport.setRegisteredUser(registeredUserDao.fetchByKey(RegisteredUser.class, userId));
+			testReport.setDateAndTime(LocalDateTime.now());
+			return newExamDao.fetchExam(subjectName, testReport, 1);
+		}
+		
+		else if(!newExamDao.hasClearedLevel(userId, subjectName, 2)) {
+			
+			TestReport testReport = new TestReport();
+			testReport.setTestSubjectName(subjectName);
+			testReport.setTestLevel(2);
+			testReport.setRegisteredUser(registeredUserDao.fetchByKey(RegisteredUser.class, userId));
+			testReport.setDateAndTime(LocalDateTime.now());
+			return newExamDao.fetchExam(subjectName, testReport, 2);
+		}
 		
 		TestReport testReport = new TestReport();
 		testReport.setTestSubjectName(subjectName);
-		testReport.setTestLevel(1);
+		testReport.setTestLevel(3);
 		testReport.setRegisteredUser(registeredUserDao.fetchByKey(RegisteredUser.class, userId));
 		testReport.setDateAndTime(LocalDateTime.now());
-		//newExamDao.save(testReport);
-		
-	
-		//reportId = testReport.getReportId();
-		//return newExamDao.fetchExam(subjectName, 1);
-		
-//		ExamQuestions examQuestions = new ExamQuestions();
-//		
-			return newExamDao.fetchExam(subjectName, testReport, 1);
-//		examQuestions.setReportId(reportId);
-//		
-//		return examQuestions;
+		return newExamDao.fetchExam(subjectName, testReport, 3);
+
 	}
 	
 }
