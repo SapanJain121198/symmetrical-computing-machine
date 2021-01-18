@@ -67,7 +67,7 @@ public class RegisteredUserDao extends GenericDao {
 	
 	public int MaxLevelCleared(int userId, String subjectName) {
 		
-		return (Integer) entityManager.createQuery("select max(t.testLevel) from TestReport t join t.registeredUser r where r.userId =:userId and t.testSubjectName = :subj and t.score >= 5")
+		return (Integer) entityManager.createQuery("select max(t.testLevel) from TestReport t join t.registeredUser r where r.userId =:userId and t.testSubjectName = :subj and t.score >= 15")
 				.setParameter("userId",userId)
 				.setParameter("subj", subjectName)
 				.getSingleResult();
