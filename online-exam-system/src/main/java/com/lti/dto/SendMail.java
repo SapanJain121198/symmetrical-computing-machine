@@ -17,10 +17,10 @@ import com.lti.entity.RegisteredUser;
 
 public class SendMail {
 	
-//	@Autowired
-//	RegisteredUserDao registeredUserDao;
+	@Autowired
+	RegisteredUserDao registeredUserDao;
 	
-	public void sendNotificationEmail(RegisteredUser registeredUser) {
+	public void sendNotificationEmail(RegisteredUser registeredUser){
 		final String recepient = registeredUser.getEmail();
 		 final String sender = "onlineexamsystem@outlook.com";  // like yourname@outlook.com
 		    final String password = "online1234";   // password here
@@ -56,6 +56,7 @@ public class SendMail {
 	         message.setSubject("Registration Successful in Online Exam System!!!");
 
 	         // Now set the actual message
+	       
 	         message.setText("Your registered email is "+ registeredUser.getEmail()+"  Password is "+ registeredUser.getPassword());
 
 	         // Send message
@@ -70,11 +71,11 @@ public class SendMail {
 	
 	
 	
-public void sendNotificationForPassword(String email) {
+public void sendNotificationForPassword(RegisteredUser registeredUser) {
 	
-	RegisteredUserDao registeredUserDao = new RegisteredUserDao();
+	//RegisteredUserDao registeredUserDao = new RegisteredUserDao();
 		
-	final String recepient = email;
+	final String recepient = registeredUser.getEmail();
 	 final String sender = "onlineexamsystem@outlook.com";  // like yourname@outlook.com
 	    final String password = "online1234";   // password here
 
@@ -109,8 +110,8 @@ public void sendNotificationForPassword(String email) {
 	         message.setSubject("Your online exam system login credentials!!!");
 
 	         // Now set the actual message  
-	         String pwd = registeredUserDao.fetchPasswordByEmailId(email);
-	         message.setText("Your registered email is "+ email +"  Password is "+ pwd);
+	         String pwd = registeredUser.getPassword();
+	         message.setText("Your registered email is "+ recepient +"  Password is "+ pwd);
 
 	         // Send message
 	         Transport.send(message);

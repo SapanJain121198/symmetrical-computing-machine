@@ -9,11 +9,12 @@ import com.lti.entity.RegisteredUser;
 import com.lti.entity.TestReport;
 
 @Repository
-public class RegisteredUserDao extends GenericDao {
+public class RegisteredUserDao extends GenericDao  {
 	
 	
 	public RegisteredUser saveUser(RegisteredUser registeredUser) {
 		String password = Password.makePassword();
+		
 		registeredUser.setPassword(password);
 		RegisteredUser updatedRegisteredUser = entityManager.merge(registeredUser);
 		return updatedRegisteredUser;
@@ -25,8 +26,8 @@ public class RegisteredUserDao extends GenericDao {
 				.getSingleResult();
 	}
 	
-	public String fetchPasswordByEmailId(String email) {
-		return (String)entityManager.createQuery("select r.password from RegisteredUser r where r.email =:em")
+	public RegisteredUser fetchUserByEmailId(String email) {
+		return (RegisteredUser)entityManager.createQuery("select r from RegisteredUser r where r.email =:em")
 				.setParameter("em",email)
 				.getSingleResult();
 	}
@@ -43,6 +44,7 @@ public class RegisteredUserDao extends GenericDao {
 	
 	public int findByEmailAndPassword(String email, String password)
 	{
+	
 		return (Integer)
 				entityManager.createQuery("select u.id from RegisteredUser u where u.email = :email and u.password = :password")     
 				.setParameter("email", email).setParameter("password", password).getSingleResult();

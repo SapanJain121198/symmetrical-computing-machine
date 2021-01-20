@@ -34,11 +34,13 @@ public class UserServiceImpl implements UserService {
 
 		RegisteredUser updatedUser = registeredUserDao.saveUser(registeredUser);
 		
+		
 		// code to send email to the customer on successful registration will be here
 
 		SendMail email= new SendMail();
 	
 		email.sendNotificationEmail(registeredUser);
+		
 		
 		return updatedUser.getUserId();
 	}
@@ -50,7 +52,13 @@ public class UserServiceImpl implements UserService {
 			if (!registeredUserDao.isUserRegistered(email))
 				throw new UserServiceException("Customer not registered!");
 
-			int id = registeredUserDao.findByEmailAndPassword(email, password);
+			int id = 0;
+			try {
+				id = registeredUserDao.findByEmailAndPassword(email, password);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 
 			RegisteredUser registeredUser = registeredUserDao.fetchByKey(RegisteredUser.class, id);
 
@@ -100,7 +108,8 @@ public class UserServiceImpl implements UserService {
 	public void resetPassword(String email) {
 		if (registeredUserDao.isUserRegistered(email)) {
 			SendMail reset= new SendMail();
-			reset.sendNotificationForPassword(email);
+			registeredUserDao.fetchUserByEmailId(email);
+			reset.sendNotificationForPassword(registeredUserDao.fetchUserByEmailId(email));
 		}
 		
 		else

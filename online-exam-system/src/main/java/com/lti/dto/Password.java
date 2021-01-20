@@ -1,5 +1,7 @@
 package com.lti.dto;
 
+import org.mindrot.jbcrypt.BCrypt;
+
 public class Password {
 	
 	
@@ -30,5 +32,4 @@ public class Password {
 		return str.substring(0,r) + toInsert + str.substring(r);
 		
 	}
-
 }
